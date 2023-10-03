@@ -158,6 +158,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const startIdx = finalText.indexOf('"text":"') + '"text":"'.length;
       const endIdx = finalText.indexOf('"}', startIdx);
       const extractedText = finalText.substring(startIdx, endIdx);
+
+      console.log(PGChunk)
       
       console.log(extractedText);
       
