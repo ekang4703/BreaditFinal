@@ -9,7 +9,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { z } from 'zod'
 
 import { Answer } from "@/components/Answer/Answer";
-import { PGChunk } from "@/PGtypes";
+import { PGChunk } from "@/PGtypes/index";
 import endent from "endent";
 
 import { toast } from '@/hooks/use-toast'
