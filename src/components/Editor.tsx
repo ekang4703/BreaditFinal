@@ -11,7 +11,6 @@ import { z } from 'zod'
 import { Answer } from "@/components/Answer/Answer";
 import { PGChunk } from "@/types/index.ts";
 import endent from "endent";
-import { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { toast } from '@/hooks/use-toast'
 import { uploadFiles } from '@/lib/uploadthing'
