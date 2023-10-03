@@ -8,9 +8,10 @@ import { useForm } from 'react-hook-form'
 import TextareaAutosize from 'react-textarea-autosize'
 import { z } from 'zod'
 
-import { createClient } from "@supabase/supabase-js";
-import { ParsedEvent, ReconnectInterval, createParser } from "eventsource-parser";
+import { Answer } from "@/components/Answer/Answer";
+import { PGChunk } from "@/types/index.ts";
 import endent from "endent";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { toast } from '@/hooks/use-toast'
 import { uploadFiles } from '@/lib/uploadthing'
