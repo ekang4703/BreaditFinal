@@ -1,4 +1,4 @@
-const { supabaseAdmin } = require('./path/to/your/utils');
+const { supabaseAdmin } = require('@/utils');
 
 const handler = async (req, res) => {
     try {
