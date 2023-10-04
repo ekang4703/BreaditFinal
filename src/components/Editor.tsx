@@ -186,14 +186,12 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        let response = await axios.post('/api/subreddit/post/extra/', { query, apiKey, matches: matchCount }, {
+        let searchResponse = await axios.post('/api/subreddit/post/extra/', { query, apiKey, matches: matchCount }, {
           headers: {
             'Content-Type': 'application/json'
           }
         });
         console.log(response)
-        let searchResponse = response.data
-        console.log(searchResponse)
 
         /*
         if (!searchResponse.ok) {
