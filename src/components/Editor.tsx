@@ -211,7 +211,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           const data = answerResponse.data;
           const dataString = JSON.stringify(data)
           console.log(dataString);
-          let globalData = dataString;
+          let globalData = '' + dataString;
           async function createComment(commentPayload: CommentRequest) {
             try {
               const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
@@ -226,7 +226,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             text: globalData,
             replyToId: undefined,
           }
-          const result5 = await createComment(payload)
+          createComment(payload)
         })
         .catch((error) => {
           console.log("Error")
