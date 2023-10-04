@@ -32,6 +32,6 @@ export async function POST(req: Request) {
 
     return new Response(JSON.stringify(chunks), { status: 200 });
   } catch (e) {
-    return new Response("Error", { status: 500 });
+    return new Response("Error Buddy", { status: 500 });
   }
 };
