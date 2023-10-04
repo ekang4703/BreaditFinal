@@ -226,7 +226,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             text: globalData,
             replyToId: undefined,
           }
-          createComment(payload)
+          const result5 = await createComment(payload)
         })
         .catch((error) => {
           console.log("Error")
