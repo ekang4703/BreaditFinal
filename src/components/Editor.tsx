@@ -202,7 +202,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         }
         */
         
-        const results: PGChunk[] = await searchResponse.json();
+        //const results: PGChunk[] = await searchResponse.json();
     
         setChunks(results);
     
