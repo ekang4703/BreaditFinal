@@ -193,16 +193,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         });
         let searchResponse = response.data;
         console.log(searchResponse)
-
-        /*
-        if (!searchResponse.ok) {
-          setLoading(false);
-          //throw new Error(searchResponse.statusText);
-          throw new Error("Buss")
-        }
-        */
-        
-        //const results: PGChunk[] = await searchResponse.json();
     
         setChunks(searchResponse);
     
@@ -219,14 +209,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         });
 
         console.log(answerResponse)
-
-        /*
-        if (!answerResponse.ok) {
-          setLoading(false);
-          //throw new Error(answerResponse.statusText);
-          throw new Error("Hey")
-        }
-        */
         
         const data = answerResponse.data;
         console.log(data);
@@ -237,19 +219,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         }
     
         setLoading(false);
-
-        /*
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        let done = false;
-    
-        while (!done) {
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value);
-          setAnswer((prev) => prev + chunkValue);
-        }
-        */
 
         setAnswer(data)
         
