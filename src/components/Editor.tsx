@@ -206,7 +206,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           headers: {
             'Content-Type': 'application/json'
           }
-        });
+        })
         .then((answerResponse) => { 
           console.log(answerResponse)
           const data = answerResponse.data;
