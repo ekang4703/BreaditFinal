@@ -173,7 +173,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
       const payload: CommentRequest = {
         postId: rId,
-        text: `<div>Custom content: <a href="https://www.youtube.com" target="_blank">${extractedText}</a></div>`,
+        text: extractedText,
         replyToId: undefined,
       }
 
