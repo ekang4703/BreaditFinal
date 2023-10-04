@@ -212,17 +212,18 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         ${searchResponse?.map((d: any) => d.content).join("\n\n")}
         `;
     
-        const answerResponse = await fetch(`/api/LLM/answer`, {
-          method: "POST",
+        let answerResponse = await axios.post('/api/subreddit/post/extraAnswer/', { prompt, apiKey }, {
           headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ prompt, apiKey })
+            'Content-Type': 'application/json'
+          }
         });
+
+        console.log(answerResponse)
     
         if (!answerResponse.ok) {
           setLoading(false);
-          throw new Error(answerResponse.statusText);
+          //throw new Error(answerResponse.statusText);
+          throw new Error("Hey")
         }
     
         const data = answerResponse.body;
