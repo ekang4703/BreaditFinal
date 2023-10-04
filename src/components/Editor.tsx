@@ -186,13 +186,12 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        const searchResponse = await fetch(`/api/LLM/search`, {
-          method: "POST",
+        const response = await axios.post('/api/LLM/search', { query, apiKey, matches: matchCount }, {
           headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ query, apiKey, matches: matchCount })
+            'Content-Type': 'application/json'
+          }
         });
+        let searchResponse = response.data;
     
         if (!searchResponse.ok) {
           setLoading(false);
