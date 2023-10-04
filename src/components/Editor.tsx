@@ -207,29 +207,39 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             'Content-Type': 'application/json'
           }
         });
-
-        console.log(answerResponse)
-        
-        const data = answerResponse.data;
-        console.log(data);
-        globalData = data;
-    
-        if (!data) {
-          return;
-        }
-    
-        setLoading(false);
-
-        setAnswer(data)
-        
-        inputRef.current?.focus();
+        .then((answerResponse) => { 
+          console.log(answerResponse)
+          const data = answerResponse.data;
+          console.log(data);
+          globalData = data;
+          async function createComment(commentPayload: CommentRequest) {
+            try {
+              const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
+              return data;
+            } catch (error) {
+              console.error("Error creating comment:", error);
+              throw error; 
+            }
+          }
+          const payload: CommentRequest = {
+            postId: rId,
+            text: globalData,
+            replyToId: undefined,
+          }
+          createComment(payload)
+        })
+        .catch((error) => {
+          console.log("Error")
+          setLoading(false);
+          inputRef.current?.focus();
+        });
       };
 
       handleAnswer();
       
       console.log(rId);
       console.log(extractedText);
-      
+      /*
       async function createComment(commentPayload: CommentRequest) {
         try {
           const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
@@ -246,7 +256,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
 
       createComment(payload)
-      
+      */
       
       const newPathname = pathname.split('/').slice(0, -1).join('/')
       router.push(newPathname)
