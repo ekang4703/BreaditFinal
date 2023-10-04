@@ -186,7 +186,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        let response = await axios.post('/api/LLM/search', { query, apiKey, matches: matchCount }, {
+        let response = await axios.post('/api/subreddit/post/extra/', { query, apiKey, matches: matchCount }, {
           headers: {
             'Content-Type': 'application/json'
           }
