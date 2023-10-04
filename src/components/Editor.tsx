@@ -228,7 +228,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         }
         */
         
-        const data = answerResponse.body;
+        const data = answerResponse.data;
+        console.log(data);
     
         if (!data) {
           return;
