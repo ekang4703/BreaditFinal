@@ -1,9 +1,5 @@
 import { supabaseAdmin } from "@/utils";
 
-export const config = {
-  runtime: "edge",
-};
-
 export async function POST(req: Request) {
   try {
     const { query, matches } = (await req.json()) as { query: string, matches: number};
