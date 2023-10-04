@@ -31,7 +31,7 @@ import { db } from '@/lib/db'
 
 
 let realId = ''
-
+let globalData = ''
 
 type FormData = z.infer<typeof PostValidator>
 
@@ -230,6 +230,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         
         const data = answerResponse.data;
         console.log(data);
+        globalData = data;
     
         if (!data) {
           return;
@@ -255,7 +256,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         inputRef.current?.focus();
       };
 
-      handleAnswer();
+      await handleAnswer();
       
       console.log(rId);
       console.log(extractedText);
@@ -271,7 +272,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
       const payload: CommentRequest = {
         postId: rId,
-        text: data,
+        text: globalData,
         replyToId: undefined,
       }
 
