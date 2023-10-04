@@ -191,7 +191,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             'Content-Type': 'application/json'
           }
         });
-        console.log(response)
+        console.log(searchResponse)
 
         /*
         if (!searchResponse.ok) {
