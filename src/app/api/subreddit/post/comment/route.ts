@@ -9,6 +9,12 @@ export async function PATCH(req: Request) {
 
     const { postId, text, replyToId } = CommentValidator.parse(body)
 
+    if (text && text.trim() !== '') {
+      console.log(text);
+    } else {
+      console.log('Text is missing or empty');
+    }
+
     const session = await getAuthSession()
 
     if (!session?.user) {
