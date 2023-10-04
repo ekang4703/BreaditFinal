@@ -1,6 +1,6 @@
 import { supabaseAdmin } from "@/utils";
 
-const handler = async (req) => {
+const handler = async (req: Request): Promise<Response> => {
     try {
         const { query, matches } = (await req.json()) as { query: string, matches: number};
 
