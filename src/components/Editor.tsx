@@ -171,8 +171,10 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const endIdx = finalText.indexOf('"}', startIdx);
       const extractedText = finalText.substring(startIdx, endIdx);
 
+      
+      let query = extractedText;
+      
       const handleAnswer = async () => {
-        setQuery(extractedText);
 
         if (!query) {
           alert("Please Input Query.");
