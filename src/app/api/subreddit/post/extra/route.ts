@@ -1,26 +1,37 @@
-import { db } from '@/lib/db'
-import { z } from 'zod'
+import { supabaseAdmin } from "@/utils";
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
   try {
-    // Retrieve data from the database (for example, all posts)
-    let users = await db.post.findFirst({
-      select: {
-        id: true,
+    const { query, matches } = (await req.json()) as { query: string, matches: number};
+
+    const response = await fetch("https://api.openai.com/v1/embeddings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY!}`,
       },
-      orderBy: {
-        id: 'desc',
-      },
+      body: JSON.stringify({
+        model: "text-embedding-ada-002",
+        input: query,
+      }),
     });
 
-    // Return the retrieved data as JSON in the response
-    return new Response(JSON.stringify(users), {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const json = await response.json();
+    const embedding = json.data[0].embedding;
+
+    const { data: chunks, error } = await supabaseAdmin.rpc("tool_data_search", {
+      query_embedding: embedding,
+      similarity_threshold: 0.01,
+      match_count: matches,
     });
-  } catch (error) {
-    // Handle errors and return an appropriate response
-    return new Response('Could not fetch posts from the database.', { status: 500 });
+
+    if (error) {
+      console.log(error);
+      return new Response("Error", { status: 500 });
+    }
+
+    return new Response(JSON.stringify(chunks), { status: 200 });
+  } catch (e) {
+    return new Response("Error", { status: 500 });
   }
-}
+};
