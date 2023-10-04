@@ -219,13 +219,15 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         });
 
         console.log(answerResponse)
-    
+
+        /*
         if (!answerResponse.ok) {
           setLoading(false);
           //throw new Error(answerResponse.statusText);
           throw new Error("Hey")
         }
-    
+        */
+        
         const data = answerResponse.body;
     
         if (!data) {
