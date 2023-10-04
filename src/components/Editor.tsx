@@ -186,7 +186,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        const searchResponse = await fetch("/api/LLM/search", {
+        const searchResponse = await fetch(`/api/LLM/search`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -209,7 +209,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         ${results?.map((d: any) => d.content).join("\n\n")}
         `;
     
-        const answerResponse = await fetch("/api/LLM/answer", {
+        const answerResponse = await fetch(`/api/LLM/answer`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
