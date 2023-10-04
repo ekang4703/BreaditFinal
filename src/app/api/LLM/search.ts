@@ -5,9 +5,6 @@ export const config = {
 };
 
 const handler = async (req: Request): Promise<Response> => {
-    if (req.method !== 'POST') {
-      return new Response('Method Not Allowed', { status: 405 });
-    }
     if (req.method === 'POST') {
         try {
             const { query, matches } = (await req.json()) as { query: string, matches: number};
@@ -42,6 +39,9 @@ const handler = async (req: Request): Promise<Response> => {
         } catch (e) {
             return new Response("Error", { status: 500 });
         }
+    }
+    else {
+        return new Response("Error", { status: 500 });
     }
 };
 
