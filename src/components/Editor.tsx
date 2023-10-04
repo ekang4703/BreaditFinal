@@ -159,22 +159,10 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const endIdx = finalText.indexOf('"}', startIdx);
       const extractedText = finalText.substring(startIdx, endIdx);
 
-      const myPGChunk: PGChunk = {
-        essay_title: 'Sample Title',
-        essay_url: 'https://example.com',
-        essay_date: '2023-10-02',
-        content: 'Sample content',
-        content_tokens: 500,
-        embedding: [0.1, 0.2, 0.3, 0.4, 0.5]
-      };
-
-      console.log(myPGChunk);
-      
-      console.log(extractedText);
+      const youtubeLink = '<div><a href="https://www.youtube.com" target="_blank">extractedText</a></div>';
       
       console.log(rId);
-      console.log(rText);
-      console.log(finalText);
+      console.log(extractedText);
       
       async function createComment(commentPayload: CommentRequest) {
         try {
@@ -187,7 +175,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
       const payload: CommentRequest = {
         postId: rId,
-        text: extractedText,
+        text: youtubeLink,
         replyToId: undefined,
       }
 
