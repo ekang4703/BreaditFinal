@@ -4,7 +4,7 @@ export async function POST(req: Request) {
   try {
     const { query, matches } = (await req.json()) as { query: string, matches: number};
 
-    const response = await fetch("https://api.openai.com/v1/embeddings", {
+    const response2 = await fetch("https://api.openai.com/v1/embeddings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       }),
     });
 
-    const json = await response.json();
+    const json = await response2.json();
     const embedding = json.data[0].embedding;
 
     const { data: chunks, error } = await supabaseAdmin.rpc("tool_data_search", {
