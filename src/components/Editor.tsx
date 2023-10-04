@@ -192,7 +192,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           }
         });
         let searchResponse = response.data;
-        console.log(searchresponse)
+        console.log(searchResponse)
 
         /*
         if (!searchResponse.ok) {
