@@ -204,7 +204,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         
         //const results: PGChunk[] = await searchResponse.json();
     
-        setChunks(results);
+        setChunks(searchResponse);
     
         const prompt = endent`
         Use the following passages to provide an answer to the query: "${query}"
