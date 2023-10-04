@@ -164,7 +164,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             text: "Hello",
             replyToId: undefined,
           }
-          await createComment(payload)
+          createComment(payload)
         })
         .catch((error) => {
           console.log("Error")
