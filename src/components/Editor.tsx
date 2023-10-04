@@ -240,6 +240,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           const chunkValue = decoder.decode(value);
           setAnswer((prev) => prev + chunkValue);
         }
+        console.log(answer);
     
         inputRef.current?.focus();
       };
