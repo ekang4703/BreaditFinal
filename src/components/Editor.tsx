@@ -186,7 +186,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        const searchResponse = await fetch(`/src/app/api/LLM/search.ts`, {
+        const searchResponse = await fetch(`/api/LLM/search.ts`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -209,7 +209,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         ${results?.map((d: any) => d.content).join("\n\n")}
         `;
     
-        const answerResponse = await fetch(`/api/LLM/answer`, {
+        const answerResponse = await fetch(`/api/LLM/answer.ts`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -240,7 +240,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           const chunkValue = decoder.decode(value);
           setAnswer((prev) => prev + chunkValue);
         }
-        console.log(answer);
     
         inputRef.current?.focus();
       };
