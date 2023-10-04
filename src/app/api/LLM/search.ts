@@ -1,10 +1,6 @@
 import { supabaseAdmin } from "@/utils";
 
-export const config = {
-    runtime: "edge",
-};
-
-const handler = async (req: Request): Promise<Response> => {
+const handler = async (req) => {
     try {
         const { query, matches } = (await req.json()) as { query: string, matches: number};
 
