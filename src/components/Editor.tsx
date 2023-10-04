@@ -192,10 +192,12 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           }
         });
         let searchResponse = response.data
+        console.log(searchResponse)
     
         if (!searchResponse.ok) {
           setLoading(false);
-          throw new Error(searchResponse.statusText);
+          //throw new Error(searchResponse.statusText);
+          throw new Error("Buss")
         }
     
         const results: PGChunk[] = await searchResponse.json();
