@@ -191,6 +191,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             'Content-Type': 'application/json'
           }
         });
+        console.log(response)
         let searchResponse = response.data
         console.log(searchResponse)
 
