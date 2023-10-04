@@ -1,47 +1,26 @@
-import { supabaseAdmin } from "@/utils";
+import { db } from '@/lib/db'
+import { z } from 'zod'
 
-const handler = async (req) => {
-    try {
-        const { query, matches } = (await req.json()) as { query: string, matches: number};
+export async function GET(req: Request) {
+  try {
+    // Retrieve data from the database (for example, all posts)
+    let users = await db.post.findFirst({
+      select: {
+        id: true,
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    });
 
-        const response = await fetch("https://api.openai.com/v1/embeddings", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.OPENAI_API_KEY!}`
-            },
-            body: JSON.stringify({
-                model: "text-embedding-ada-002",
-                input: query
-            })
-        });
-
-        const json = await response.json();
-        const embedding = json.data[0].embedding;
-
-        const { data: chunks, error } = await supabaseAdmin.rpc("tool_data_search", {
-            query_embedding: embedding,
-            similarity_threshold: 0.01,
-            match_count: matches
-        });
-
-        if (error) {
-            console.log(error)
-            return new Response("Error", { status: 500 });
-        }
-
-        return new Response(JSON.stringify(chunks), { status: 200 });
-    } catch (e) {
-        return new Response("Error", { status: 500 });
-    }
-};
-
-export default handler;
-
-export const config = {
-    api: {
-        bodyParser: {
-            sizeLimit: '1mb',
-        },
-    },
-};
+    // Return the retrieved data as JSON in the response
+    return new Response(JSON.stringify(users), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    // Handle errors and return an appropriate response
+    return new Response('Could not fetch posts from the database.', { status: 500 });
+  }
+}
