@@ -1,14 +1,18 @@
-const { supabaseAdmin } = require('@/utils');
+import { supabaseAdmin } from "@/utils";
 
-const handler = async (req, res) => {
+export const config = {
+    runtime: "edge",
+};
+
+const handler = async (req: Request): Promise<Response> => {
     try {
-        const { query, matches } = req.body; // Assuming req.body contains your JSON data
+        const { query, matches } = (await req.json()) as { query: string, matches: number};
 
         const response = await fetch("https://api.openai.com/v1/embeddings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+                Authorization: `Bearer ${process.env.OPENAI_API_KEY!}`
             },
             body: JSON.stringify({
                 model: "text-embedding-ada-002",
@@ -26,15 +30,14 @@ const handler = async (req, res) => {
         });
 
         if (error) {
-            console.error(error);
-            return res.status(500).json({ error: 'Internal Server Error' });
+            console.log(error)
+            return new Response("Error", { status: 500 });
         }
 
-        return res.status(200).json(chunks);
+        return new Response(JSON.stringify(chunks), { status: 200 });
     } catch (e) {
-        console.error(e);
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return new Response("Error", { status: 500 });
     }
 };
 
-module.exports = handler;
+export default handler;
