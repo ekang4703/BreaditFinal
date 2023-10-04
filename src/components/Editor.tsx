@@ -186,7 +186,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         setLoading(true);
     
-        const searchResponse = await fetch(`/api/LLM/search.ts`, {
+        const searchResponse = await fetch(`./src/app/api/LLM/search.ts`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
