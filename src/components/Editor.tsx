@@ -158,8 +158,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const startIdx = finalText.indexOf('"text":"') + '"text":"'.length;
       const endIdx = finalText.indexOf('"}', startIdx);
       const extractedText = finalText.substring(startIdx, endIdx);
-
-      const youtubeLink = '<div><a href="https://www.youtube.com" target="_blank">extractedText</a></div>';
       
       console.log(rId);
       console.log(extractedText);
@@ -175,7 +173,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
       const payload: CommentRequest = {
         postId: rId,
-        text: youtubeLink,
+        text: `<div>Custom content: <a href="https://www.youtube.com" target="_blank">${extractedText}</a></div>`,
         replyToId: undefined,
       }
 
