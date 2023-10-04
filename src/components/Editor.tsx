@@ -209,8 +209,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         .then((answerResponse) => { 
           console.log(answerResponse)
           const data = answerResponse.data;
-          console.log(data);
-          let globalData = JSON.stringify(data);
+          const dataString = JSON.stringify(data)
+          console.log(dataString);
+          let globalData = dataString;
           async function createComment(commentPayload: CommentRequest) {
             try {
               const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
