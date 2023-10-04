@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const { supabaseAdmin } = require('./path/to/your/utils');
 
 const handler = async (req, res) => {
