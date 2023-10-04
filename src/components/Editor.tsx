@@ -209,7 +209,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         const prompt = endent`
         Use the following passages to provide an answer to the query: "${query}"
     
-        ${results?.map((d: any) => d.content).join("\n\n")}
+        ${searchResponse?.map((d: any) => d.content).join("\n\n")}
         `;
     
         const answerResponse = await fetch(`/api/LLM/answer`, {
