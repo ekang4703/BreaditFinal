@@ -31,7 +31,6 @@ import { db } from '@/lib/db'
 
 
 let realId = ''
-let globalData = ''
 
 type FormData = z.infer<typeof PostValidator>
 
@@ -211,7 +210,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           console.log(answerResponse)
           const data = answerResponse.data;
           console.log(data);
-          globalData = JSON.stringify(data);
+          let globalData = JSON.stringify(data);
           async function createComment(commentPayload: CommentRequest) {
             try {
               const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
@@ -223,7 +222,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           }
           const payload: CommentRequest = {
             postId: rId,
-            text: "Hello",
+            text: globalData,
             replyToId: undefined,
           }
           createComment(payload)
