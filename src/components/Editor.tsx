@@ -242,6 +242,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     
         inputRef.current?.focus();
       };
+
+      handleAnswer();
       
       console.log(rId);
       console.log(extractedText);
@@ -257,7 +259,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       }
       const payload: CommentRequest = {
         postId: rId,
-        text: extractedText,
+        text: answer,
         replyToId: undefined,
       }
 
