@@ -206,7 +206,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         ${results?.map((d: any) => d.content).join("\n\n")}
         `;
     
-        const answerResponse = await fetch("/api/answer", {
+        const answerResponse = await fetch("/api/LLM/answer", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
