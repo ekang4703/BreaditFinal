@@ -236,7 +236,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         }
     
         setLoading(false);
-    
+
+        /*
         const reader = data.getReader();
         const decoder = new TextDecoder();
         let done = false;
@@ -247,7 +248,10 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           const chunkValue = decoder.decode(value);
           setAnswer((prev) => prev + chunkValue);
         }
-    
+        */
+
+        setAnswer(data)
+        
         inputRef.current?.focus();
       };
 
