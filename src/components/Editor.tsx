@@ -223,7 +223,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           }
           const payload: CommentRequest = {
             postId: rId,
-            text: "LeBron",
+            text: finalData,
             replyToId: undefined,
           }
           createComment(payload)
