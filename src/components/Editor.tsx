@@ -256,7 +256,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         inputRef.current?.focus();
       };
 
-      await handleAnswer();
+      handleAnswer();
       
       console.log(rId);
       console.log(extractedText);
