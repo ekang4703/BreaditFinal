@@ -170,6 +170,76 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const startIdx = finalText.indexOf('"text":"') + '"text":"'.length;
       const endIdx = finalText.indexOf('"}', startIdx);
       const extractedText = finalText.substring(startIdx, endIdx);
+
+      const handleAnswer = async () => {
+
+        if (!query) {
+          alert("Please Input Query.");
+          return;
+        }
+    
+        setAnswer("");
+        setChunks([]);
+    
+        setLoading(true);
+    
+        const searchResponse = await fetch("@/app/api/LLM/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ query, apiKey, matches: matchCount })
+        });
+    
+        if (!searchResponse.ok) {
+          setLoading(false);
+          throw new Error(searchResponse.statusText);
+        }
+    
+        const results: PGChunk[] = await searchResponse.json();
+    
+        setChunks(results);
+    
+        const prompt = endent`
+        Use the following passages to provide an answer to the query: "${query}"
+    
+        ${results?.map((d: any) => d.content).join("\n\n")}
+        `;
+    
+        const answerResponse = await fetch("/api/answer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ prompt, apiKey })
+        });
+    
+        if (!answerResponse.ok) {
+          setLoading(false);
+          throw new Error(answerResponse.statusText);
+        }
+    
+        const data = answerResponse.body;
+    
+        if (!data) {
+          return;
+        }
+    
+        setLoading(false);
+    
+        const reader = data.getReader();
+        const decoder = new TextDecoder();
+        let done = false;
+    
+        while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          const chunkValue = decoder.decode(value);
+          setAnswer((prev) => prev + chunkValue);
+        }
+    
+        inputRef.current?.focus();
+      };
       
       console.log(rId);
       console.log(extractedText);
