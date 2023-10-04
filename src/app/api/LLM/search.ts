@@ -4,9 +4,9 @@ export const config = {
   runtime: "edge",
 };
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
-    const { query, matches } = req.body as { query: string; matches: number };
+    const { query, matches } = (await req.json()) as { query: string, matches: number};
 
     const response = await fetch("https://api.openai.com/v1/embeddings", {
       method: "POST",
@@ -30,14 +30,12 @@ export async function POST(req: Request, res: Response) {
     });
 
     if (error) {
-      console.error(error);
-      res.status(500).send("Error");
-      return;
+      console.log(error);
+      return new Response("Error", { status: 500 });
     }
 
-    res.status(200).json(chunks);
+    return new Response(JSON.stringify(chunks), { status: 200 });
   } catch (e) {
-    console.error(e);
-    res.status(500).send("Error");
+    return new Response("Error", { status: 500 });
   }
-}
+};
