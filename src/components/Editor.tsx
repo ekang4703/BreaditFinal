@@ -208,10 +208,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         })
         .then((answerResponse) => { 
           console.log(answerResponse)
-          const data1 = answerResponse.data;
-          const dataString = JSON.stringify(data1)
+          const data1: string = answerResponse.data;
+          const dataString: string = JSON.stringify(data1)
           console.log(dataString);
-          let globalData = dataString;
           async function createComment(commentPayload: CommentRequest) {
             try {
               const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
@@ -223,7 +222,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           }
           const payload: CommentRequest = {
             postId: rId,
-            text: globalData,
+            text: dataString,
             replyToId: undefined,
           }
           createComment(payload)
