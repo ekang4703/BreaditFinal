@@ -87,7 +87,7 @@ const PostComment: FC<PostCommentProps> = ({
         </div>
       </div>
 
-      <p className='text-sm text-zinc-900 mt-2'>{comment.text}</p>
+      <p className='text-sm text-zinc-900 mt-2' dangerouslySetInnerHTML={{ __html: `<div style="color: red;">${comment.text}</div>` }} />
 
       <div className='flex gap-2 items-center'>
         <CommentVotes
