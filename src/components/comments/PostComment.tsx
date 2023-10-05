@@ -36,6 +36,7 @@ const PostComment: FC<PostCommentProps> = ({
   postId,
 }) => {
   let formattedText = `<div style="color: red;">${comment.text}</div>`;
+  let typeofformattedtext = typeof formattedText;
   const { data: session } = useSession()
   const [isReplying, setIsReplying] = useState<boolean>(false)
   const commentRef = useRef<HTMLDivElement>(null)
@@ -88,7 +89,7 @@ const PostComment: FC<PostCommentProps> = ({
         </div>
       </div>
 
-      <p className='text-sm text-zinc-900 mt-2' dangerouslySetInnerHTML={{ __html: formattedText }} />
+      <p className='text-sm text-zinc-900 mt-2' dangerouslySetInnerHTML={{ __html: typeofformattedtext }} />
 
       <div className='flex gap-2 items-center'>
         <CommentVotes
