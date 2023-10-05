@@ -88,7 +88,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     onSuccess: (data) => {
             
       let realId = data
-      console.log(realId)
       
       let rId: string = realId.id;
       let rText: string = realId.content;
@@ -128,7 +127,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             }
           });
           let searchResponse = response.data;
-          console.log(searchResponse)
       
           setChunks(searchResponse);
       
@@ -144,17 +142,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             }
           });
      
-          console.log(answerResponse)
           let data1: string = answerResponse.data;
-          console.log(data1)
-          console.log(typeof data1)
-          /*
-          let dataString = JSON.stringify(data1)
-          let finalData = dataString
-          console.log(finalData);
-          console.log(typeof finalData);
-          console.log(finalData.length)
-          */
           const payload: CommentRequest = {
             postId: rId,
             text: data1,
