@@ -127,9 +127,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             }
           });
           let searchResponse = response.data;
+          console.log(searchResponse);
       
           setChunks(searchResponse);
-          console.log(searchResponse);
       
           const prompt = endent`
           Use the following passages to provide an answer to the query: "${query}"
@@ -159,8 +159,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       };
 
       handleAnswer().then(() => {
-          console.log(rId)
-          console.log(extractedText)
           const newPathname = pathname.split('/').slice(0, -1).join('/');
           router.push(newPathname);
           router.refresh();
