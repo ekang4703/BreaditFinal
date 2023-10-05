@@ -173,7 +173,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           router.push(newPathname);
           router.refresh();
           toast({
-              description: 'Your post has been published.',
+              description: 'Your post has been successfully published.',
           });
       });
     },
