@@ -35,8 +35,6 @@ const PostComment: FC<PostCommentProps> = ({
   currentVote,
   postId,
 }) => {
-  let formattedText = `<div style="color: red;">${comment.text}</div>`;
-  let typeofformattedtext = typeof formattedText;
   const { data: session } = useSession()
   const [isReplying, setIsReplying] = useState<boolean>(false)
   const commentRef = useRef<HTMLDivElement>(null)
