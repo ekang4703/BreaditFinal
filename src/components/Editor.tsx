@@ -146,6 +146,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
      
           console.log(answerResponse)
           let data1: string = answerResponse.data;
+          console.log(data1)
+          console.log(typeof data1)
           let dataString = JSON.stringify(data1)
           let finalData = dataString
           console.log(finalData);
