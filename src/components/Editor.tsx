@@ -20,8 +20,6 @@ import axios, { AxiosError } from 'axios'
 
 import '@/styles/editor.css'
 
-
-
 import { CommentRequest } from '@/lib/validators/comment'
 import { useCustomToasts } from '@/hooks/use-custom-toasts'
 import { Label } from '@/components/ui/Label'
@@ -29,16 +27,9 @@ import { Textarea } from '@/components/ui/Textarea'
 import { Button } from '@/components/ui/Button'
 import { db } from '@/lib/db'
 
-
 let realId = ''
 
 type FormData = z.infer<typeof PostValidator>
-
-
-
-
-
-
 
 interface EditorProps {
   subredditId: string
@@ -95,7 +86,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       })
     },
     onSuccess: (data) => {
-      // turn pathname /r/mycommunity/submit into /r/mycommunity
             
       let realId = data
       console.log(realId)
@@ -177,24 +167,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       
       console.log(rId);
       console.log(extractedText);
-      /*
-      async function createComment(commentPayload: CommentRequest) {
-        try {
-          const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
-          return data;
-        } catch (error) {
-          console.error("Error creating comment:", error);
-          throw error; 
-        }
-      }
-      const payload: CommentRequest = {
-        postId: rId,
-        text: globalData,
-        replyToId: undefined,
-      }
-
-      createComment(payload)
-      */
       
       const newPathname = pathname.split('/').slice(0, -1).join('/')
       router.push(newPathname)
@@ -311,33 +283,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     }
 
     await createPost(PostPayload);
-
-    /*
-    async function createComment(commentPayload: CommentRequest) {
-      try {
-        const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
-        return data;
-      } catch (error) {
-        console.error("Error creating comment:", error);
-        throw error; 
-      }
-    }
-    
-    let response = await axios.get('/api/subreddit/post/extra/')
-    let users = response.data
-    let name = users.id
-
-    console.log('Name Check: ', name)
-    console.log('realId Check: ', realId)
-    
-    const payload: CommentRequest = {
-      postId: realId,
-      text: name,
-      replyToId: undefined,
-    }
-
-    await createComment(payload)
-    */
   }
 
   if (!isMounted) {
