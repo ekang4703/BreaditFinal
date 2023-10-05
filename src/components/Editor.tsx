@@ -63,7 +63,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [mode, setMode] = useState<"search" | "chat">("chat");
-  const [matchCount, setMatchCount] = useState<number>(5);
+  const [matchCount, setMatchCount] = useState<number>(3);
   const [apiKey, setApiKey] = useState<string>(process.env.OPENAI_API_KEY!);
 
   const { mutate: createPost } = useMutation({
