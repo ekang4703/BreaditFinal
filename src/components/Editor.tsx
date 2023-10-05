@@ -148,15 +148,16 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           let data1: string = answerResponse.data;
           console.log(data1)
           console.log(typeof data1)
+          /*
           let dataString = JSON.stringify(data1)
           let finalData = dataString
           console.log(finalData);
           console.log(typeof finalData);
           console.log(finalData.length)
-
+          */
           const payload: CommentRequest = {
             postId: rId,
-            text: finalData,
+            text: data1,
             replyToId: undefined,
           }
           await createComment(payload)
