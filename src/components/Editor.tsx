@@ -152,7 +152,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
           const payload: CommentRequest = {
             postId: rId,
-            text: "Hello",
+            text: finalData,
             replyToId: undefined,
           }
           await createComment(payload)
