@@ -149,7 +149,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           let dataString = JSON.stringify(data1)
           let finalData = dataString
           console.log(finalData);
-          console.log(typeof finalData)
 
           const payload: CommentRequest = {
             postId: rId,
