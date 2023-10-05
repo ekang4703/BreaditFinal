@@ -35,6 +35,7 @@ const PostComment: FC<PostCommentProps> = ({
   currentVote,
   postId,
 }) => {
+  let formattedText = `<div style="color: red;">${comment.text}</div>`;
   const { data: session } = useSession()
   const [isReplying, setIsReplying] = useState<boolean>(false)
   const commentRef = useRef<HTMLDivElement>(null)
@@ -65,7 +66,6 @@ const PostComment: FC<PostCommentProps> = ({
     onSuccess: () => {
       router.refresh()
       setIsReplying(false)
-      let formattedText = `<div style="color: red;">${comment.text}</div>`;
     },
   })
 
