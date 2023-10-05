@@ -102,39 +102,39 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       let query = extractedText;
       
       const handleAnswer = async () => {
-
-        if (!query) {
-          alert("Please Input Query.");
-          return;
-        }
-    
-        setAnswer("");
-        setChunks([]);
-    
-        setLoading(true);
-    
-        let response = await axios.post('/api/subreddit/post/extra/', { query, apiKey, matches: matchCount }, {
-          headers: {
-            'Content-Type': 'application/json'
+        try {
+          if (!query) {
+            alert("Please Input Query.");
+            return;
           }
-        });
-        let searchResponse = response.data;
-        console.log(searchResponse)
-    
-        setChunks(searchResponse);
-    
-        const prompt = endent`
-        Use the following passages to provide an answer to the query: "${query}"
-    
-        ${searchResponse?.map((d: any) => d.content).join("\n\n")}
-        `;
-    
-        let answerResponse = await axios.post('/api/subreddit/post/extraAnswer/', { prompt, apiKey }, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then((answerResponse) => { 
+      
+          setAnswer("");
+          setChunks([]);
+      
+          setLoading(true);
+      
+          let response = await axios.post('/api/subreddit/post/extra/', { query, apiKey, matches: matchCount }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          let searchResponse = response.data;
+          console.log(searchResponse)
+      
+          setChunks(searchResponse);
+      
+          const prompt = endent`
+          Use the following passages to provide an answer to the query: "${query}"
+      
+          ${searchResponse?.map((d: any) => d.content).join("\n\n")}
+          `;
+      
+          let answerResponse = await axios.post('/api/subreddit/post/extraAnswer/', { prompt, apiKey }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+     
           console.log(answerResponse)
           let data1: string = answerResponse.data;
           let dataString = JSON.stringify(data1)
@@ -154,28 +154,25 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             text: "Hello",
             replyToId: undefined,
           }
-          createComment(payload)
-        })
-        .catch((error) => {
-          console.log("Error")
+          await createComment(payload)
+          
           setLoading(false);
           inputRef.current?.focus();
-        });
+        } catch (error) {
+          console.error("Error occurred:", error);
+        }
       };
 
-      handleAnswer();
-      
-      console.log(rId);
-      console.log(extractedText);
-      
-      const newPathname = pathname.split('/').slice(0, -1).join('/')
-      router.push(newPathname)
-
-      router.refresh()
-
-      return toast({
-        description: 'Your post has been published.',
-      })
+      handleAnswer().then(() => {
+          console.log(rId)
+          console.log(extractedText)
+          const newPathname = pathname.split('/').slice(0, -1).join('/');
+          router.push(newPathname);
+          router.refresh();
+          toast({
+              description: 'Your post has been published.',
+          });
+      });
     },
   })
 
