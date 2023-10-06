@@ -54,7 +54,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const pathname = usePathname()
 
-  /*
+  
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [query, setQuery] = useState<string>("");
@@ -66,7 +66,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
   const [mode, setMode] = useState<"search" | "chat">("chat");
   const [matchCount, setMatchCount] = useState<number>(3);
   const [apiKey, setApiKey] = useState<string>(process.env.OPENAI_API_KEY!);
-  */
+  
 
   const { mutate: createPost } = useMutation({
     mutationFn: async ({
@@ -109,20 +109,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
         }
       }
 
-      const inputRef = useRef<HTMLInputElement>(null);
-
-      const [query, setQuery] = useMyState<string>("");
-      const [chunks, setChunks] = useMyState<PGChunk[]>([]);
-      const [answer, setAnswer] = useMyState<string>("");
-      const [loading, setLoading] = useMyState<boolean>(false);
-    
-      const [showSettings, setShowSettings] = useMyState<boolean>(false);
-      const [mode, setMode] = useMyState<"search" | "chat">("chat");
-      const [matchCount, setMatchCount] = useMyState<number>(3);
-      const [apiKey, setApiKey] = useMyState<string>(process.env.OPENAI_API_KEY!);
-
-      setQuery(extractedText)
-      //let query = extractedText;
+      let query = extractedText;
       
       const handleAnswer = async () => {
         try {
