@@ -132,23 +132,23 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
           let sources = searchResponse.map((source, index) => (
             `<div key=${index}>
-              <div className="mt-4 border border-zinc-600 rounded-lg p-4" style={{ marginTop: "1rem", border: "1px solid #318CE7", borderRadius: "0.5rem", padding: "1rem" }}>
-                <div className="flex justify-between" style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className="mt-4 border border-zinc-600 rounded-lg p-4" style="marginTop: 1rem; border: 1px solid #318CE7; borderRadius: 0.5rem; padding: 1rem;">
+                <div className="flex justify-between" style="display: flex; justifyContent: space-between;">
                   <div>
-                    <div className="font-bold text-xl" style={{ fontWeight: "bold", fontSize: "1.25rem" }}>${source.essay_title}</div>
-                    <div className="mt-1 font-bold text-sm" style={{ marginTop: "0.25rem", fontWeight: "bold", fontSize: "0.875rem" }}>${source.essay_date}</div>
+                    <div className="font-bold text-xl" style="fontWeight: bold; fontSize: 1.25rem">${source.essay_title}</div>
+                    <div className="mt-1 font-bold text-sm" style="marginTop: "0.25rem; fontWeight: bold; fontSize: 0.875rem;">${source.essay_date}</div>
                   </div>
                   <a
                     className="hover:opacity-50 ml-2"
                     href=${source.essay_url}
                     target="_blank"
                     rel="noreferrer"
-                    style={{ color: lightblue }}
+                    style="color: lightblue;"
                   >
                     Source
                   </a>
                 </div>
-                <div className="mt-2" style={{ marginTop: "0.5rem" }}>${source.content}</div>
+                <div className="mt-2" style="marginTop: 0.5rem;">${source.content}</div>
               </div>
             </div>`
           )).join('');
@@ -172,10 +172,10 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           let data1: string = answerResponse.data;
 
           let finalResponse = `
-            <div className="mt-6" style={{ marginTop: "1.5rem" }}>
-            <div className="font-bold text-2xl mb-2" style={{ marginBottom: "0.5rem" }}>${data1}</div> 
-            <div className="mt-6 mb-16" style={{ marginTop: "1.5rem", marginBottom: "4rem" }}>
-              <div className="font-bold text-2xl" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>Sources</div>
+            <div className="mt-6" style="marginTop: 1.5rem;">
+            <div className="font-bold text-2xl mb-2" style="marginBottom: 0.5rem;">${data1}</div> 
+            <div className="mt-6 mb-16" style="marginTop: 1.5rem; marginBottom: 4rem;">
+              <div className="font-bold text-2xl" style="fontWeight: bold; fontSize: 1.5rem;">Sources</div>
               ${sources}
             </div>
             </div>
