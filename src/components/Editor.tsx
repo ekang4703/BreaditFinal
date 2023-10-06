@@ -143,7 +143,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
                     href=${source.essay_url}
                     target="_blank"
                     rel="noreferrer"
-                    style="color: lightblue;"
                   >
                     Source
                   </a>
