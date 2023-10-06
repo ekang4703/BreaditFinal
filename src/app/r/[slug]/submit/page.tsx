@@ -49,7 +49,7 @@ const Page = ({ params }: pageProps) => {
         </div>
       </div>
 
-      <Editor subredditId={subreddit.id} />
+      <Editor subredditId={subreddit?.id} />
 
       <div className='w-full flex justify-end'>
         <Button
