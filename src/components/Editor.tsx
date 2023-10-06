@@ -104,7 +104,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           const { data } = await axios.patch(`/api/subreddit/post/comment/`, commentPayload);
           return data;
         } catch (error) {
-          console.error("Error creating comment:", error);
+          console.error("Error creating your comment:", error);
           throw error; 
         }
       }
