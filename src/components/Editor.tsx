@@ -169,6 +169,19 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           });
      
           let data1: string = answerResponse.data;
+
+          let finalResponse = `
+            <div className="mt-6">
+            <div className="font-bold text-2xl mb-2">${data1}</div> 
+            <div className="mt-6 mb-16">
+              <div className="font-bold text-2xl">Sources</div>
+              ${sources}
+            </div>
+            </div>
+          `;
+          console.log("INCOMING FINALRESPONSE")
+          console.log(finalResponse)
+          
           const payload: CommentRequest = {
             postId: rId,
             text: data1,
