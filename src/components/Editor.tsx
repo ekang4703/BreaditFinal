@@ -83,7 +83,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
     onError: () => {
       return toast({
         title: 'Something went wrong.',
-        description: 'Your post was not published. Please try again.',
+        description: 'An error occured. Your post was not published. Please try again.',
         variant: 'destructive',
       })
     },
