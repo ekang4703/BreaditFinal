@@ -1,26 +1,43 @@
-import { Editor } from '@/components/Editor'
-import { Button } from '@/components/ui/Button'
-import { db } from '@/lib/db'
-import { notFound } from 'next/navigation'
+import React from 'react';
+import { useMutation } from 'react-query';
+import { Editor } from '@/components/Editor';
+import { Button } from '@/components/ui/Button';
+import { db } from '@/lib/db';
+import { notFound } from 'next/navigation';
 
 interface pageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-const page = async ({ params }: pageProps) => {
-  const subreddit = await db.subreddit.findFirst({
+const mockMutation = async () => {
+  // Simulate an asynchronous operation (e.g., API request) with a delay
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated 2-second delay
+  // Return some mock data (optional)
+  return { success: true };
+};
+
+const Page = ({ params }: pageProps) => {
+  const { mutate, isLoading } = useMutation(mockMutation);
+
+  const handleSubmit = () => {
+    mutate(); // Call the mock mutation function
+  };
+
+  const subreddit = db.subreddit.findFirst({
     where: {
       name: params.slug,
     },
-  })
+  });
 
-  if (!subreddit) return notFound()
+  if (!subreddit) {
+    notFound();
+    return null; // Return null when subreddit is not found
+  }
 
   return (
     <div className='flex flex-col items-start gap-6'>
-      {/* heading /}
       <div className='border-b border-gray-200 pb-5'>
         <div className='-ml-2 -mt-2 flex flex-wrap items-baseline'>
           <h3 className='ml-2 mt-2 text-base font-semibold leading-6 text-gray-900'>
@@ -32,16 +49,21 @@ const page = async ({ params }: pageProps) => {
         </div>
       </div>
 
-      {/ form */}
       <Editor subredditId={subreddit.id} />
 
       <div className='w-full flex justify-end'>
-        <Button type='submit' className='w-full' form='subreddit-post-form'>
+        <Button
+          type='submit'
+          className='w-full'
+          form='subreddit-post-form'
+          isLoading={isLoading}
+          onClick={handleSubmit}
+        >
           Finger
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
