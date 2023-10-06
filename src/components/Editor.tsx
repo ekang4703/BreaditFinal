@@ -120,8 +120,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
       const [mode, setMode] = useState<"search" | "chat">("chat");
       const [matchCount, setMatchCount] = useState<number>(3);
       const [apiKey, setApiKey] = useState<string>(process.env.OPENAI_API_KEY!);
-      
-      query = extractedText;
+
+      setQuery(extractedText)
+      //let query = extractedText;
       
       const handleAnswer = async () => {
         try {
