@@ -111,15 +111,15 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
       const inputRef = useRef<HTMLInputElement>(null);
 
-      const [query, setQuery] = useState<string>("");
-      const [chunks, setChunks] = useState<PGChunk[]>([]);
-      const [answer, setAnswer] = useState<string>("");
-      const [loading, setLoading] = useState<boolean>(false);
+      const [query, setQuery] = useMyState<string>("");
+      const [chunks, setChunks] = useMyState<PGChunk[]>([]);
+      const [answer, setAnswer] = useMyState<string>("");
+      const [loading, setLoading] = useMyState<boolean>(false);
     
-      const [showSettings, setShowSettings] = useState<boolean>(false);
-      const [mode, setMode] = useState<"search" | "chat">("chat");
-      const [matchCount, setMatchCount] = useState<number>(3);
-      const [apiKey, setApiKey] = useState<string>(process.env.OPENAI_API_KEY!);
+      const [showSettings, setShowSettings] = useMyState<boolean>(false);
+      const [mode, setMode] = useMyState<"search" | "chat">("chat");
+      const [matchCount, setMatchCount] = useMyState<number>(3);
+      const [apiKey, setApiKey] = useMyState<string>(process.env.OPENAI_API_KEY!);
 
       setQuery(extractedText)
       //let query = extractedText;
