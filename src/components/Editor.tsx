@@ -330,7 +330,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
   return (
     <div className='w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200'>
-    {loading && <div className="loading-indicator">Processing...</div>}
+    {loading && <div className="style text-2xl font-bold text-blue-300">Processing...</div>}
       <form
         id='subreddit-post-form'
         className='w-fit'
