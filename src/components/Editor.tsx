@@ -127,7 +127,6 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             }
           });
           let searchResponse = response.data;
-          console.log(searchResponse);
       
           setChunks(searchResponse);
           console.log(chunks);
