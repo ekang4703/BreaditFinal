@@ -30,9 +30,9 @@ export default async function Home() {
             <div className='flex justify-between gap-x-4 py-3'>
               <p className='text-zinc-500'>
                 Welcome to Campus Connected PRO, where learning meets innovation!
-                Dive into a world of knowledge with our cutting-edge Reddit-like app that revolutionizes the way you study. Imagine a vibrant community where students, teachers, and curious minds come together to explore the depths of education. What sets us apart? Our AI-powered technology, your personal study buddy, custom-trained on school textbooks!
-                Campus Connected PRO is not just another app; it is your digital classroom, your study group, and your 24/7 tutor, all rolled into one. With our specially trained AI, you can ask questions, discuss complex topics, and clarify doubts instantly, just like chatting with a knowledgeable friend. Whether you are tackling algebra, dissecting Shakespeare, or unraveling the mysteries of science, our AI has you covered.
-                Join us and be part of a supportive community where learning is interactive, engaging, and tailored to your needs. Let us transform education together, one chat at a time. Hope to see you in the Communities!
+                Dive into a world of knowledge with our cutting-edge Reddit-like app that revolutionizes the way you study. Our AI-powered technology, your personal study buddy, custom-trained on school textbooks!
+                Campus Connected PRO is your digital classroom, your study group, and your 24/7 tutor, all rolled into one. With our specially trained AI, you can ask questions, discuss complex topics, and clarify doubts instantly.
+                Join us and be part of a supportive community where learning is interactive, engaging, and tailored to your needs. Hope to see you in the Communities!
               </p>
             </div>
 
