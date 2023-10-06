@@ -1,22 +1,43 @@
-import { Editor } from '@/components/Editor'
-import { Button } from '@/components/ui/Button'
-import { db } from '@/lib/db'
-import { notFound } from 'next/navigation'
+import React, { useState, useEffect } from 'react';
+import { Editor } from '@/components/Editor';
+import { Button } from '@/components/ui/Button';
+import { db } from '@/lib/db';
+import { notFound } from 'next/navigation';
 
 interface pageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-const page = async ({ params }: pageProps) => {
-  const subreddit = await db.subreddit.findFirst({
-    where: {
-      name: params.slug,
-    },
-  })
+const Page = ({ params }: pageProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [subreddit, setSubreddit] = useState(null);
 
-  if (!subreddit) return notFound()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const subredditData = await db.subreddit.findFirst({
+          where: {
+            name: params.slug,
+          },
+        });
+
+        if (subredditData) {
+          setSubreddit(subredditData);
+        } else {
+          notFound();
+        }
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      } finally {
+        setIsLoading(false); // Set loading state to false when data fetching is complete
+      }
+    };
+
+    setIsLoading(true); // Set loading state to true when data fetching starts
+    fetchData();
+  }, [params.slug]);
 
   return (
     <div className='flex flex-col items-start gap-6'>
@@ -33,7 +54,11 @@ const page = async ({ params }: pageProps) => {
       </div>
 
       {/* form */}
-      <Editor subredditId={subreddit.id} />
+      {isLoading ? (
+        <p>Loading...</p> // You can replace this with a loading spinner or any loading component you prefer
+      ) : (
+        <Editor subredditId={subreddit?.id} />
+      )}
 
       <div className='w-full flex justify-end'>
         <Button type='submit' className='w-full' form='subreddit-post-form'>
@@ -41,7 +66,7 @@ const page = async ({ params }: pageProps) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
