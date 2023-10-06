@@ -14,7 +14,9 @@ const Navbar = async () => {
         {/* logo */}
         <Link href='/' className='flex gap-2 items-center'>
           <img src = "https://github.com/ekang4703/BreaditFinal/blob/master/public/campusconnected_.png?raw=true" className='h-15 w-30 sm:h-10 sm:w-20' />
-          <p className='hidden text-zinc-700 text-sm font-medium md:block'>PRO</p>
+          <p className='hidden text-zinc-700 text-sm font-medium md:block'>
+             <span style={{ fontWeight: 'bold', color: 'lightblue' }}>PRO</span>
+          </p>
         </Link>
 
         {/* search bar */}
