@@ -181,6 +181,8 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           `;
           console.log("INCOMING FINALRESPONSE")
           console.log(finalResponse)
+          console.log(typeof finalResponse)
+          console.log(finalResponse.length)
           
           const payload: CommentRequest = {
             postId: rId,
