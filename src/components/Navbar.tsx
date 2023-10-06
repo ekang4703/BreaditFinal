@@ -13,7 +13,7 @@ const Navbar = async () => {
       <div className='container max-w-7xl h-full mx-auto flex items-center justify-between gap-2'>
         {/* logo */}
         <Link href='/' className='flex gap-2 items-center'>
-          <Icons.logo className='h-8 w-8 sm:h-6 sm:w-6' />
+          <img src = "https://github.com/ekang4703/BreaditFinal/blob/master/public/campusconnected_.png?raw=true" className='h-8 w-8 sm:h-6 sm:w-6' />
           <p className='hidden text-zinc-700 text-sm font-medium md:block'>CampusConnectedPro</p>
         </Link>
 
