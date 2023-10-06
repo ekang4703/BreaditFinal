@@ -305,17 +305,23 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
   }, [isMounted, initializeEditor])
 
   async function onSubmit(data: FormData) {
-    const blocks = await ref.current?.save()
+    setLoading(true);
+    
+    try {
+      const blocks = await ref.current?.save();
+  
+      const PostPayload: PostCreationRequest = {
+        title: data.title,
+        content: blocks,
+        subredditId,
+      };
 
-    const PostPayload: PostCreationRequest = {
-      title: data.title,
-      content: blocks,
-      subredditId,
+      await createPost(PostPayload);
+    } finally {
+      setLoading(false);
     }
-
-    await createPost(PostPayload);
   }
-
+  
   if (!isMounted) {
     return null
   }
@@ -324,6 +330,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
   return (
     <div className='w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200'>
+    {loading && <div className="loading-indicator">Processing...</div>}
       <form
         id='subreddit-post-form'
         className='w-fit'
