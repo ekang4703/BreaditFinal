@@ -128,7 +128,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
               'Content-Type': 'application/json'
             }
           });
-          let searchResponse = response.data;
+          let searchResponse: PGChunk[] = response.data;
 
           const titles = searchResponse.map(item => item.title);
           console.log(titles);
