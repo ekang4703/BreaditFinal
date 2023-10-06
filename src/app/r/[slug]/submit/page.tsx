@@ -37,7 +37,7 @@ const page = async ({ params }: pageProps) => {
 
       <div className='w-full flex justify-end'>
         <Button type='submit' className='w-full' form='subreddit-post-form'>
-          Post
+          Finger
         </Button>
       </div>
     </div>
