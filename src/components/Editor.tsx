@@ -130,8 +130,29 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           });
           let searchResponse: PGChunk[] = response.data;
 
-          const titles = searchResponse.map(item => item.essay_title);
-          console.log(titles);
+          let sources = searchResponse.map((source, index) => {
+            `<div key={index}>
+              <div className="mt-4 border border-zinc-600 rounded-lg p-4">
+                <div className="flex justify-between">
+                  <div>
+                    <div className="font-bold text-xl">{chunk.essay_title}</div>
+                    <div className="mt-1 font-bold text-sm">{chunk.essay_date}</div>
+                  </div>
+                  <a
+                    className="hover:opacity-50 ml-2"
+                    href={chunk.essay_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Source
+                  </a>
+                </div>
+                <div className="mt-2">{chunk.content}</div>
+              </div>
+            </div>`
+          )).join('');
+          console.log("INCOMING SOURCES")
+          console.log(sources)
       
           setChunks(searchResponse);
       
