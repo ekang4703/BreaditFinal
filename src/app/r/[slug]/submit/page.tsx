@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query'
 import { Editor } from '@/components/Editor';
 import { Button } from '@/components/ui/Button';
 import { db } from '@/lib/db';
