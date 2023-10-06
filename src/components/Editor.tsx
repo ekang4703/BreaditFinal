@@ -129,9 +129,11 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             }
           });
           let searchResponse = response.data;
+
+          const titles = searchResponse.map(item => item.title);
+          console.log(titles);
       
           setChunks(searchResponse);
-          console.log(chunks);
       
           const prompt = endent`
           Use the following passages to provide an answer to the query: "${query}"
