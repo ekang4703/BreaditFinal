@@ -118,7 +118,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
             return;
           }
       
-          setAnswer("");
+          setAnswer("Hi");
           setChunks([]);
       
           setLoading(true);
