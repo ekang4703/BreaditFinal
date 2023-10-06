@@ -144,7 +144,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           });
      
           let data1: string = answerResponse.data;
-          setAnswer(data1)
+          setAnswer(prevAnswer => {
+            return data1;
+          });
           const payload: CommentRequest = {
             postId: rId,
             text: answer,
