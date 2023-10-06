@@ -130,6 +130,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           console.log(searchResponse);
       
           setChunks(searchResponse);
+          console.log(chunks);
       
           const prompt = endent`
           Use the following passages to provide an answer to the query: "${query}"
@@ -144,12 +145,9 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           });
      
           let data1: string = answerResponse.data;
-          setAnswer(prevAnswer => {
-            return data1;
-          });
           const payload: CommentRequest = {
             postId: rId,
-            text: answer,
+            text: data1,
             replyToId: undefined,
           }
           await createComment(payload)
