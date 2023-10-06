@@ -130,7 +130,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           });
           let searchResponse: PGChunk[] = response.data;
 
-          const titles = searchResponse.map(item => item.title);
+          const titles = searchResponse.map(item => item.essay_title);
           console.log(titles);
       
           setChunks(searchResponse);
