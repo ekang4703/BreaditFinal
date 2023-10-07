@@ -132,7 +132,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
           let sources = searchResponse.map((source, index) => (
             `<div key=${index}>
-              <div className="mt-4 border border-zinc-600 rounded-lg p-4" style="margin-top: 1rem; border: 1px solid #318CE7; border-radius: 0.5rem; padding: 1rem;">
+              <div className="mt-4 border border-zinc-600 rounded-lg p-4" style="margin-top: 1rem; border: 1px solid #438099; border-radius: 0.5rem; padding: 1rem;">
                 <div className="flex justify-between" style="display: flex; justify-content: space-between;">
                   <div>
                     <div className="font-bold text-xl" style="font-weight: bold; font-size: 1.25rem;">${source.essay_title}</div>
