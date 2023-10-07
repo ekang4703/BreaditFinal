@@ -145,7 +145,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
                     rel="noreferrer"
                     style="color: blue"
                   >
-                    Source
+                    🔗
                   </a>
                 </div>
                 <div className="mt-2" style="margin-top: 0.5rem;">${source.content}</div>
